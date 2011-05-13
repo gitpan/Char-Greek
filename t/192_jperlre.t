@@ -1,5 +1,5 @@
 # This file is encoded in Char::Greek.
-die "This file is not encoded in ShiftJIS.\n" if q{‚ } ne "\x82\xa0";
+die "This file is not encoded in Char::Greek.\n" if q{‚ } ne "\x82\xa0";
 
 use Char::Greek;
 print "1..1\n";
