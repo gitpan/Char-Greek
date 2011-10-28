@@ -24,11 +24,6 @@ SYNOPSIS
 DESCRIPTION
 
       This software is "JPerl on the Modern Perl" written by Perl.
-
-      To our regret, the Sjis software family cannot treat Greek up to now.
-      This software can supplement those weak points. We can write the script
-      in Greek again.
-
       This software treats Greek directly. Therefore, there is not UTF8 flag.
 
 INSTALLATION BY MAKE (for UNIX like system)
