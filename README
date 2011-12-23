@@ -214,5 +214,5 @@ See also code table:
 
 SEE ALSO
 
-perl, Sjis.pm
+perl, Greek.pm, Egreek.pm, jacode.pl
 
