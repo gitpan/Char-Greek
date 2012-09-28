@@ -13,10 +13,10 @@ BEGIN {
     if ($^X =~ / jperl /oxmsi) {
         die __FILE__, ": needs perl(not jperl) 5.00503 or later. (\$^X==$^X)";
     }
-    if (ord('A') == 193) {
+    if (CORE::ord('A') == 193) {
         die __FILE__, ": is not US-ASCII script (may be EBCDIC or EBCDIK script).";
     }
-    if (ord('A') != 0x41) {
+    if (CORE::ord('A') != 0x41) {
         die __FILE__, ": is not US-ASCII script (must be US-ASCII script).";
     }
 }
@@ -27,7 +27,7 @@ BEGIN {
 # (and so on)
 
 BEGIN { eval q{ use vars qw($VERSION) } }
-$VERSION = sprintf '%d.%02d', q$Revision: 0.82 $ =~ /(\d+)/xmsg;
+$VERSION = sprintf '%d.%02d', q$Revision: 0.83 $ =~ /(\d+)/xmsg;
 
 BEGIN {
     my $PERL5LIB = __FILE__;
@@ -336,71 +336,71 @@ sub Char::Greek::rindex($$;$);
 # Character class
 #
 BEGIN { eval q{ use vars qw(
-    @anchor
-    @dot
-    @dot_s
-    @eD
-    @eS
-    @eW
-    @eH
-    @eV
-    @eR
-    @eN
-    @not_alnum
-    @not_alpha
-    @not_ascii
-    @not_blank
-    @not_cntrl
-    @not_digit
-    @not_graph
-    @not_lower
-    @not_lower_i
-    @not_print
-    @not_punct
-    @not_space
-    @not_upper
-    @not_upper_i
-    @not_word
-    @not_xdigit
-    @eb
-    @eB
+    $anchor
+    $dot
+    $dot_s
+    $eD
+    $eS
+    $eW
+    $eH
+    $eV
+    $eR
+    $eN
+    $not_alnum
+    $not_alpha
+    $not_ascii
+    $not_blank
+    $not_cntrl
+    $not_digit
+    $not_graph
+    $not_lower
+    $not_lower_i
+    $not_print
+    $not_punct
+    $not_space
+    $not_upper
+    $not_upper_i
+    $not_word
+    $not_xdigit
+    $eb
+    $eB
 ) } }
-@{Char::Egreek::anchor}      = qr{\G(?:[\x00-\xFF])*?};
-@{Char::Egreek::dot}         = qr{(?:[^\x0A])};
-@{Char::Egreek::dot_s}       = qr{(?:[\x00-\xFF])};
-@{Char::Egreek::eD}          = qr{(?:[^0-9])};
+${Char::Egreek::anchor}      = qr{\G(?:[\x00-\xFF])*?};
+${Char::Egreek::dot}         = qr{(?:[^\x0A])};
+${Char::Egreek::dot_s}       = qr{(?:[\x00-\xFF])};
+${Char::Egreek::eD}          = qr{(?:[^0-9])};
 
-@{Char::Egreek::eS}          = qr{(?:[^\x09\x0A\x0C\x0D\x20])};
+${Char::Egreek::eS}          = qr{(?:[^\x09\x0A\x0C\x0D\x20])};
 
 # Incompatible Changes
 # \s in regular expressions now matches a Vertical Tab (experimental)
 # http://search.cpan.org/~zefram/perl-5.17.0/pod/perldelta.pod
 
-# @{Char::Egreek::eS}        = qr{(?:[^\x09\x0A\x0B\x0C\x0D\x20])};
+# ${Char::Egreek::eS}        = qr{(?:[^\x09\x0A\x0B\x0C\x0D\x20])};
 
-@{Char::Egreek::eW}          = qr{(?:[^0-9A-Z_a-z])};
-@{Char::Egreek::eH}          = qr{(?:[^\x09\x20])};
-@{Char::Egreek::eV}          = qr{(?:[^\x0A\x0B\x0C\x0D])};
-@{Char::Egreek::eR}          = qr{(?:\x0D\x0A|[\x0A\x0D])};
-@{Char::Egreek::eN}          = qr{(?:[^\x0A])};
-@{Char::Egreek::not_alnum}   = qr{(?:[^\x30-\x39\x41-\x5A\x61-\x7A])};
-@{Char::Egreek::not_alpha}   = qr{(?:[^\x41-\x5A\x61-\x7A])};
-@{Char::Egreek::not_ascii}   = qr{(?:[^\x00-\x7F])};
-@{Char::Egreek::not_blank}   = qr{(?:[^\x09\x20])};
-@{Char::Egreek::not_cntrl}   = qr{(?:[^\x00-\x1F\x7F])};
-@{Char::Egreek::not_digit}   = qr{(?:[^\x30-\x39])};
-@{Char::Egreek::not_graph}   = qr{(?:[^\x21-\x7F])};
-@{Char::Egreek::not_lower}   = qr{(?:[^\x61-\x7A])};
-@{Char::Egreek::not_lower_i} = qr{(?:[\x00-\xFF])};
-@{Char::Egreek::not_print}   = qr{(?:[^\x20-\x7F])};
-@{Char::Egreek::not_punct}   = qr{(?:[^\x21-\x2F\x3A-\x3F\x40\x5B-\x5F\x60\x7B-\x7E])};
-@{Char::Egreek::not_space}   = qr{(?:[^\x09\x0A\x0B\x0C\x0D\x20])};
-@{Char::Egreek::not_upper}   = qr{(?:[^\x41-\x5A])};
-@{Char::Egreek::not_upper_i} = qr{(?:[\x00-\xFF])};
-@{Char::Egreek::not_word}    = qr{(?:[^\x30-\x39\x41-\x5A\x5F\x61-\x7A])};
-@{Char::Egreek::not_xdigit}  = qr{(?:[^\x30-\x39\x41-\x46\x61-\x66])};
-@{Char::Egreek::eb}          = qr{(?:\A(?=[0-9A-Z_a-z])|(?<=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF])(?=[0-9A-Z_a-z])|(?<=[0-9A-Z_a-z])(?=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF]|\z))};
-@{Char::Egreek::eB}          = qr{(?:(?<=[0-9A-Z_a-z])(?=[0-9A-Z_a-z])|(?<=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF])(?=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF]))};
+${Char::Egreek::eW}          = qr{(?:[^0-9A-Z_a-z])};
+${Char::Egreek::eH}          = qr{(?:[^\x09\x20])};
+${Char::Egreek::eV}          = qr{(?:[^\x0A\x0B\x0C\x0D])};
+${Char::Egreek::eR}          = qr{(?:\x0D\x0A|[\x0A\x0D])};
+${Char::Egreek::eN}          = qr{(?:[^\x0A])};
+${Char::Egreek::not_alnum}   = qr{(?:[^\x30-\x39\x41-\x5A\x61-\x7A])};
+${Char::Egreek::not_alpha}   = qr{(?:[^\x41-\x5A\x61-\x7A])};
+${Char::Egreek::not_ascii}   = qr{(?:[^\x00-\x7F])};
+${Char::Egreek::not_blank}   = qr{(?:[^\x09\x20])};
+${Char::Egreek::not_cntrl}   = qr{(?:[^\x00-\x1F\x7F])};
+${Char::Egreek::not_digit}   = qr{(?:[^\x30-\x39])};
+${Char::Egreek::not_graph}   = qr{(?:[^\x21-\x7F])};
+${Char::Egreek::not_lower}   = qr{(?:[^\x61-\x7A])};
+${Char::Egreek::not_lower_i} = qr{(?:[\x00-\xFF])};
+${Char::Egreek::not_print}   = qr{(?:[^\x20-\x7F])};
+${Char::Egreek::not_punct}   = qr{(?:[^\x21-\x2F\x3A-\x3F\x40\x5B-\x5F\x60\x7B-\x7E])};
+${Char::Egreek::not_space}   = qr{(?:[^\x09\x0A\x0B\x0C\x0D\x20])};
+${Char::Egreek::not_upper}   = qr{(?:[^\x41-\x5A])};
+${Char::Egreek::not_upper_i} = qr{(?:[\x00-\xFF])};
+${Char::Egreek::not_word}    = qr{(?:[^\x30-\x39\x41-\x5A\x5F\x61-\x7A])};
+${Char::Egreek::not_xdigit}  = qr{(?:[^\x30-\x39\x41-\x46\x61-\x66])};
+${Char::Egreek::eb}          = qr{(?:\A(?=[0-9A-Z_a-z])|(?<=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF])(?=[0-9A-Z_a-z])|(?<=[0-9A-Z_a-z])(?=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF]|\z))};
+${Char::Egreek::eB}          = qr{(?:(?<=[0-9A-Z_a-z])(?=[0-9A-Z_a-z])|(?<=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF])(?=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF]))};
 
 #
 # @ARGV wildcard globbing
@@ -904,7 +904,7 @@ sub Char::Egreek::fc(@) {
 }
 
 #
-# Greek fold case lower case without parameter
+# Greek fold case without parameter
 #
 sub Char::Egreek::fc_() {
     my $s = $_;
@@ -961,11 +961,9 @@ sub Char::Egreek::ignorecase(@) {
 
                         # escape character
                         for my $char (@charlist) {
-
-                            # do not use quotemeta here
-                            if ($char =~ /\A ([\x80-\xFF].*) ($metachar) \z/oxms) {
-                                $char = $1 . '\\' . $2;
+                            if (0) {
                             }
+
                             elsif ($char =~ /\A [.|)] \z/oxms) {
                                 $char = $1 . '\\' . $char;
                             }
@@ -1000,11 +998,9 @@ sub Char::Egreek::ignorecase(@) {
 
                         # escape character
                         for my $char (@charlist) {
-
-                            # do not use quotemeta here
-                            if ($char =~ /\A ([\x80-\xFF].*) ($metachar) \z/oxms) {
-                                $char = $1 . '\\' . $2;
+                            if (0) {
                             }
+
                             elsif ($char =~ /\A [.|)] \z/oxms) {
                                 $char = '\\' . $char;
                             }
@@ -1043,9 +1039,7 @@ sub Char::Egreek::ignorecase(@) {
         for (my $i=0; $i <= $#char; $i++) {
             next if not defined $char[$i];
 
-            # escape last octet of multiple-octet
-            if ($char[$i] =~ /\A ([\x80-\xFF].*) ($metachar) \z/oxms) {
-                $char[$i] = $1 . '\\' . $2;
+            if (0) {
             }
 
             # quote character before ? + * {
@@ -1070,9 +1064,9 @@ sub classic_character_class($) {
     my($char) = @_;
 
     return {
-        '\D' => '@{Char::Egreek::eD}',
-        '\S' => '@{Char::Egreek::eS}',
-        '\W' => '@{Char::Egreek::eW}',
+        '\D' => '${Char::Egreek::eD}',
+        '\S' => '${Char::Egreek::eS}',
+        '\W' => '${Char::Egreek::eW}',
         '\d' => '[0-9]',
                  # \t  \n  \f  \r space
         '\s' => '[\x09\x0A\x0C\x0D\x20]',
@@ -1110,11 +1104,11 @@ sub classic_character_class($) {
 
         # (and so on)
 
-        '\H' => '@{Char::Egreek::eH}',
-        '\V' => '@{Char::Egreek::eV}',
+        '\H' => '${Char::Egreek::eH}',
+        '\V' => '${Char::Egreek::eV}',
         '\h' => '[\x09\x20]',
         '\v' => '[\x0A\x0B\x0C\x0D]',
-        '\R' => '@{Char::Egreek::eR}',
+        '\R' => '${Char::Egreek::eR}',
 
         # \N
         #
@@ -1122,7 +1116,7 @@ sub classic_character_class($) {
         # Character Classes and other Special Escapes
         # Any character but \n (experimental). Not affected by /s modifier
 
-        '\N' => '@{Char::Egreek::eN}',
+        '\N' => '${Char::Egreek::eN}',
 
         # \b \B
 
@@ -1135,10 +1129,10 @@ sub classic_character_class($) {
         # of ISBN 978-0-596-00492-7 Programming Perl 4th Edition.
 
         # '\b' => '(?:(?<=\A|\W)(?=\w)|(?<=\w)(?=\W|\z))',
-        '\b' => '@{Char::Egreek::eb}',
+        '\b' => '${Char::Egreek::eb}',
 
         # '\B' => '(?:(?<=\w)(?=\w)|(?<=\W)(?=\W))',
-        '\B' => '@{Char::Egreek::eB}',
+        '\B' => '${Char::Egreek::eB}',
 
     }->{$char} || '';
 }
@@ -1540,19 +1534,19 @@ sub _charlist {
             $char[$i] = hexchr($1);
         }
 
-        # \N{CHARNAME} --> N{CHARNAME}
-        elsif ($char[$i] =~ /\A \\ ( N\{ ([^0-9\}][^\}]*) \} ) \z/oxms) {
-            $char[$i] = $1;
+        # \N{CHARNAME} --> N\{CHARNAME}
+        elsif ($char[$i] =~ /\A \\ (N) ( \{ ([^0-9\}][^\}]*) \} ) \z/oxms) {
+            $char[$i] = $1 . '\\' . $2;
         }
 
-        # \p{PROPERTY} --> p{PROPERTY}
-        elsif ($char[$i] =~ /\A \\ ( p\{ ([^0-9\}][^\}]*) \} ) \z/oxms) {
-            $char[$i] = $1;
+        # \p{PROPERTY} --> p\{PROPERTY}
+        elsif ($char[$i] =~ /\A \\ (p) ( \{ ([^0-9\}][^\}]*) \} ) \z/oxms) {
+            $char[$i] = $1 . '\\' . $2;
         }
 
-        # \P{PROPERTY} --> P{PROPERTY}
-        elsif ($char[$i] =~ /\A \\ ( P\{ ([^0-9\}][^\}]*) \} ) \z/oxms) {
-            $char[$i] = $1;
+        # \P{PROPERTY} --> P\{PROPERTY}
+        elsif ($char[$i] =~ /\A \\ (P) ( \{ ([^0-9\}][^\}]*) \} ) \z/oxms) {
+            $char[$i] = $1 . '\\' . $2;
         }
 
         # \p, \P, \X --> p, P, X
@@ -1591,15 +1585,15 @@ sub _charlist {
                 # '\s' => '[\x09\x0A\x0B\x0C\x0D\x20]',
 
                 '\w' => '[0-9A-Z_a-z]',
-                '\D' => '@{Char::Egreek::eD}',
-                '\S' => '@{Char::Egreek::eS}',
-                '\W' => '@{Char::Egreek::eW}',
+                '\D' => '${Char::Egreek::eD}',
+                '\S' => '${Char::Egreek::eS}',
+                '\W' => '${Char::Egreek::eW}',
 
-                '\H' => '@{Char::Egreek::eH}',
-                '\V' => '@{Char::Egreek::eV}',
+                '\H' => '${Char::Egreek::eH}',
+                '\V' => '${Char::Egreek::eV}',
                 '\h' => '[\x09\x20]',
                 '\v' => '[\x0A\x0B\x0C\x0D]',
-                '\R' => '@{Char::Egreek::eR}',
+                '\R' => '${Char::Egreek::eR}',
 
             }->{$1};
         }
@@ -1610,8 +1604,8 @@ sub _charlist {
 
                 '[:lower:]'   => '[\x41-\x5A\x61-\x7A]',
                 '[:upper:]'   => '[\x41-\x5A\x61-\x7A]',
-                '[:^lower:]'  => '@{Char::Egreek::not_lower_i}',
-                '[:^upper:]'  => '@{Char::Egreek::not_upper_i}',
+                '[:^lower:]'  => '${Char::Egreek::not_lower_i}',
+                '[:^upper:]'  => '${Char::Egreek::not_upper_i}',
 
             }->{$1};
         }
@@ -1632,20 +1626,20 @@ sub _charlist {
                 '[:upper:]'   => '[\x41-\x5A]',
                 '[:word:]'    => '[\x30-\x39\x41-\x5A\x5F\x61-\x7A]',
                 '[:xdigit:]'  => '[\x30-\x39\x41-\x46\x61-\x66]',
-                '[:^alnum:]'  => '@{Char::Egreek::not_alnum}',
-                '[:^alpha:]'  => '@{Char::Egreek::not_alpha}',
-                '[:^ascii:]'  => '@{Char::Egreek::not_ascii}',
-                '[:^blank:]'  => '@{Char::Egreek::not_blank}',
-                '[:^cntrl:]'  => '@{Char::Egreek::not_cntrl}',
-                '[:^digit:]'  => '@{Char::Egreek::not_digit}',
-                '[:^graph:]'  => '@{Char::Egreek::not_graph}',
-                '[:^lower:]'  => '@{Char::Egreek::not_lower}',
-                '[:^print:]'  => '@{Char::Egreek::not_print}',
-                '[:^punct:]'  => '@{Char::Egreek::not_punct}',
-                '[:^space:]'  => '@{Char::Egreek::not_space}',
-                '[:^upper:]'  => '@{Char::Egreek::not_upper}',
-                '[:^word:]'   => '@{Char::Egreek::not_word}',
-                '[:^xdigit:]' => '@{Char::Egreek::not_xdigit}',
+                '[:^alnum:]'  => '${Char::Egreek::not_alnum}',
+                '[:^alpha:]'  => '${Char::Egreek::not_alpha}',
+                '[:^ascii:]'  => '${Char::Egreek::not_ascii}',
+                '[:^blank:]'  => '${Char::Egreek::not_blank}',
+                '[:^cntrl:]'  => '${Char::Egreek::not_cntrl}',
+                '[:^digit:]'  => '${Char::Egreek::not_digit}',
+                '[:^graph:]'  => '${Char::Egreek::not_graph}',
+                '[:^lower:]'  => '${Char::Egreek::not_lower}',
+                '[:^print:]'  => '${Char::Egreek::not_print}',
+                '[:^punct:]'  => '${Char::Egreek::not_punct}',
+                '[:^space:]'  => '${Char::Egreek::not_space}',
+                '[:^upper:]'  => '${Char::Egreek::not_upper}',
+                '[:^word:]'   => '${Char::Egreek::not_word}',
+                '[:^xdigit:]' => '${Char::Egreek::not_xdigit}',
 
             }->{$1};
         }
@@ -2407,6 +2401,12 @@ sub Char::Greek::reverse(@) {
         return CORE::reverse @_;
     }
     else {
+
+        # One of us once cornered Larry in an elevator and asked him what
+        # problem he was solving with this, but he looked as far off into
+        # the distance as he could in an elevator and said, "It seemed like
+        # a good idea at the time."
+
         return join '', CORE::reverse(join('',@_) =~ /\G ($q_char) /oxmsg);
     }
 }
