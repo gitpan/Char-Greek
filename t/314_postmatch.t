@@ -3,7 +3,6 @@ die "This file is not encoded in Char::Greek.\n" if q{‚ } ne "\x82\xa0";
 
 use strict;
 use Char::Greek;
-use English;
 print "1..11\n";
 
 my $__FILE__ = __FILE__;
