@@ -28,7 +28,7 @@ BEGIN {
 # (and so on)
 
 BEGIN { eval q{ use vars qw($VERSION) } }
-$VERSION = sprintf '%d.%02d', q$Revision: 0.87 $ =~ /(\d+)/xmsg;
+$VERSION = sprintf '%d.%02d', q$Revision: 0.88 $ =~ /(\d+)/xmsg;
 
 BEGIN {
     my $PERL5LIB = __FILE__;
@@ -398,7 +398,6 @@ sub Char::Greek::rindex($$;$);
 # Character class
 #
 BEGIN { eval q{ use vars qw(
-    $anchor
     $dot
     $dot_s
     $eD
@@ -427,7 +426,7 @@ BEGIN { eval q{ use vars qw(
     $eb
     $eB
 ) } }
-${Char::Egreek::anchor}      = qr{\G(?:[\x00-\xFF])*?};
+
 ${Char::Egreek::dot}         = qr{(?:[^\x0A])};
 ${Char::Egreek::dot_s}       = qr{(?:[\x00-\xFF])};
 ${Char::Egreek::eD}          = qr{(?:[^0-9])};
@@ -463,6 +462,35 @@ ${Char::Egreek::not_word}    = qr{(?:[^\x30-\x39\x41-\x5A\x5F\x61-\x7A])};
 ${Char::Egreek::not_xdigit}  = qr{(?:[^\x30-\x39\x41-\x46\x61-\x66])};
 ${Char::Egreek::eb}          = qr{(?:\A(?=[0-9A-Z_a-z])|(?<=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF])(?=[0-9A-Z_a-z])|(?<=[0-9A-Z_a-z])(?=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF]|\z))};
 ${Char::Egreek::eB}          = qr{(?:(?<=[0-9A-Z_a-z])(?=[0-9A-Z_a-z])|(?<=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF])(?=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF]))};
+
+# avoid: Name "Char::Egreek::foo" used only once: possible typo at here.
+${Char::Egreek::dot}         = ${Char::Egreek::dot};
+${Char::Egreek::dot_s}       = ${Char::Egreek::dot_s};
+${Char::Egreek::eD}          = ${Char::Egreek::eD};
+${Char::Egreek::eS}          = ${Char::Egreek::eS};
+${Char::Egreek::eW}          = ${Char::Egreek::eW};
+${Char::Egreek::eH}          = ${Char::Egreek::eH};
+${Char::Egreek::eV}          = ${Char::Egreek::eV};
+${Char::Egreek::eR}          = ${Char::Egreek::eR};
+${Char::Egreek::eN}          = ${Char::Egreek::eN};
+${Char::Egreek::not_alnum}   = ${Char::Egreek::not_alnum};
+${Char::Egreek::not_alpha}   = ${Char::Egreek::not_alpha};
+${Char::Egreek::not_ascii}   = ${Char::Egreek::not_ascii};
+${Char::Egreek::not_blank}   = ${Char::Egreek::not_blank};
+${Char::Egreek::not_cntrl}   = ${Char::Egreek::not_cntrl};
+${Char::Egreek::not_digit}   = ${Char::Egreek::not_digit};
+${Char::Egreek::not_graph}   = ${Char::Egreek::not_graph};
+${Char::Egreek::not_lower}   = ${Char::Egreek::not_lower};
+${Char::Egreek::not_lower_i} = ${Char::Egreek::not_lower_i};
+${Char::Egreek::not_print}   = ${Char::Egreek::not_print};
+${Char::Egreek::not_punct}   = ${Char::Egreek::not_punct};
+${Char::Egreek::not_space}   = ${Char::Egreek::not_space};
+${Char::Egreek::not_upper}   = ${Char::Egreek::not_upper};
+${Char::Egreek::not_upper_i} = ${Char::Egreek::not_upper_i};
+${Char::Egreek::not_word}    = ${Char::Egreek::not_word};
+${Char::Egreek::not_xdigit}  = ${Char::Egreek::not_xdigit};
+${Char::Egreek::eb}          = ${Char::Egreek::eb};
+${Char::Egreek::eB}          = ${Char::Egreek::eB};
 
 #
 # Greek split

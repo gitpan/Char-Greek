@@ -28,7 +28,7 @@ BEGIN {
 # (and so on)
 
 BEGIN { eval q{ use vars qw($VERSION) } }
-$VERSION = sprintf '%d.%02d', q$Revision: 0.87 $ =~ /(\d+)/xmsg;
+$VERSION = sprintf '%d.%02d', q$Revision: 0.88 $ =~ /(\d+)/xmsg;
 
 BEGIN {
     my $PERL5LIB = __FILE__;
@@ -398,7 +398,6 @@ sub Greek::rindex($$;$);
 # Character class
 #
 BEGIN { eval q{ use vars qw(
-    $anchor
     $dot
     $dot_s
     $eD
@@ -427,7 +426,7 @@ BEGIN { eval q{ use vars qw(
     $eb
     $eB
 ) } }
-${Egreek::anchor}      = qr{\G(?:[\x00-\xFF])*?};
+
 ${Egreek::dot}         = qr{(?:[^\x0A])};
 ${Egreek::dot_s}       = qr{(?:[\x00-\xFF])};
 ${Egreek::eD}          = qr{(?:[^0-9])};
@@ -463,6 +462,35 @@ ${Egreek::not_word}    = qr{(?:[^\x30-\x39\x41-\x5A\x5F\x61-\x7A])};
 ${Egreek::not_xdigit}  = qr{(?:[^\x30-\x39\x41-\x46\x61-\x66])};
 ${Egreek::eb}          = qr{(?:\A(?=[0-9A-Z_a-z])|(?<=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF])(?=[0-9A-Z_a-z])|(?<=[0-9A-Z_a-z])(?=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF]|\z))};
 ${Egreek::eB}          = qr{(?:(?<=[0-9A-Z_a-z])(?=[0-9A-Z_a-z])|(?<=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF])(?=[\x00-\x2F\x40\x5B-\x5E\x60\x7B-\xFF]))};
+
+# avoid: Name "Egreek::foo" used only once: possible typo at here.
+${Egreek::dot}         = ${Egreek::dot};
+${Egreek::dot_s}       = ${Egreek::dot_s};
+${Egreek::eD}          = ${Egreek::eD};
+${Egreek::eS}          = ${Egreek::eS};
+${Egreek::eW}          = ${Egreek::eW};
+${Egreek::eH}          = ${Egreek::eH};
+${Egreek::eV}          = ${Egreek::eV};
+${Egreek::eR}          = ${Egreek::eR};
+${Egreek::eN}          = ${Egreek::eN};
+${Egreek::not_alnum}   = ${Egreek::not_alnum};
+${Egreek::not_alpha}   = ${Egreek::not_alpha};
+${Egreek::not_ascii}   = ${Egreek::not_ascii};
+${Egreek::not_blank}   = ${Egreek::not_blank};
+${Egreek::not_cntrl}   = ${Egreek::not_cntrl};
+${Egreek::not_digit}   = ${Egreek::not_digit};
+${Egreek::not_graph}   = ${Egreek::not_graph};
+${Egreek::not_lower}   = ${Egreek::not_lower};
+${Egreek::not_lower_i} = ${Egreek::not_lower_i};
+${Egreek::not_print}   = ${Egreek::not_print};
+${Egreek::not_punct}   = ${Egreek::not_punct};
+${Egreek::not_space}   = ${Egreek::not_space};
+${Egreek::not_upper}   = ${Egreek::not_upper};
+${Egreek::not_upper_i} = ${Egreek::not_upper_i};
+${Egreek::not_word}    = ${Egreek::not_word};
+${Egreek::not_xdigit}  = ${Egreek::not_xdigit};
+${Egreek::eb}          = ${Egreek::eb};
+${Egreek::eB}          = ${Egreek::eB};
 
 #
 # Greek split
