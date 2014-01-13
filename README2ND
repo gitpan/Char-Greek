@@ -1,14 +1,12 @@
 NAME
 
-       Char::Greek - Source code filter for Greek script (Imitation JPerl)
+       Greek - Source code filter for Greek script (Imitation JPerl)
 
 SYNOPSIS
 
     In your script:
 
-      use Char::Greek; # CPAN formal style
-         or
-      use Greek; # casual style
+      use Greek;
 
     At command prompt:
 
